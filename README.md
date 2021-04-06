@@ -36,3 +36,5 @@ jobs:
         with:
           path: /frontend
 ```
+
+See [dependabot-pub-example](https://github.com/JohannSchramm/dependabot-pub-example) for working example pull requests.
