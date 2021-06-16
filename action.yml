@@ -5,7 +5,7 @@ inputs:
     description: 'Persornal access token used to modify the repository.'
     default: ${{ github.token }}
   project:
-    description: 'The reposiory you want to create pull requests for'
+    description: 'The repository you want to create pull requests for'
     default: ${{ github.repository }}
   path:
     description: 'The path of the pubspec.yaml'

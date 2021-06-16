@@ -13,7 +13,7 @@ The runner is a modified version of the [dependabot-script](https://github.com/d
 | Name      | Description                                          | Default           |
 | --------- | ---------------------------------------------------- | ----------------- |
 | `token`   | Persornal access token used to modify the repository | github.token      |
-| `project` | The reposiory you want to create pull requests for   | github.repository |
+| `project` | The repository you want to create pull requests for  | github.repository |
 | `path`    | The path of the pubspec.yaml                         | '/'               |
 
 ## Example Workflow
