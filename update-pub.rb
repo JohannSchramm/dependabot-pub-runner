@@ -82,31 +82,36 @@ dependencies.select(&:top_level?).each do |dep|
     requirements_to_unlock: requirements_to_unlock
   )
 
-  #####################################
-  # Generate updated dependency files #
-  #####################################
-  print "  - Updating #{dep.name} (from #{dep.version})…"
-  updater = Dependabot::FileUpdaters.for_package_manager(package_manager).new(
-    dependencies: updated_deps,
-    dependency_files: files,
-    credentials: credentials,
-  )
+  begin
+    #####################################
+    # Generate updated dependency files #
+    #####################################
+    print "  - Updating #{dep.name} (from #{dep.version})…"
+    updater = Dependabot::FileUpdaters.for_package_manager(package_manager).new(
+      dependencies: updated_deps,
+      dependency_files: files,
+      credentials: credentials,
+    )
 
-  updated_files = updater.updated_dependency_files
+    updated_files = updater.updated_dependency_files
 
-  ########################################
-  # Create a pull request for the update #
-  ########################################
-  pr_creator = Dependabot::PullRequestCreator.new(
-    source: source,
-    base_commit: commit,
-    dependencies: updated_deps,
-    files: updated_files,
-    credentials: credentials,
-    label_language: true,
-  )
-  pull_request = pr_creator.create
-  puts " submitted"
+    ########################################
+    # Create a pull request for the update #
+    ########################################
+    pr_creator = Dependabot::PullRequestCreator.new(
+      source: source,
+      base_commit: commit,
+      dependencies: updated_deps,
+      files: updated_files,
+      credentials: credentials,
+      label_language: true,
+    )
+    pull_request = pr_creator.create
+    puts " submitted"
+  rescue => exception
+    puts " unable to submit"
+    puts exception
+  end
 end
 
 puts "Done"

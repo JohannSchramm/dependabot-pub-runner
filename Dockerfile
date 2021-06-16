@@ -39,7 +39,16 @@ RUN apt-get install -y software-properties-common \
   && gem update --system 3.0.3 \
   && gem install bundler -v 1.17.3 --no-document
 
-### PUB
+
+### DART
+
+# Install Flutter SDK
+RUN git clone --branch stable https://github.com/flutter/flutter.git /opt/flutter/stable
+ENV PATH="$PATH:/opt/flutter/stable/bin"
+RUN flutter precache
+
+
+### DEPENDABOT PUB
 
 # Clone Dependabot Pub
 
